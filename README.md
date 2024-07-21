@@ -1,80 +1,33 @@
-# To-Do List Application
+Longest Common Prefix Finder
 
-## Overview
+Description
 
-This is a simple To-Do List application built with Node.js and Express on the server-side, and plain HTML, CSS, and JavaScript on the client-side. It allows users to add, update, delete, and reorder to-do items.
+This project provides a web-based tool to find the longest common prefix string among a set of input strings. If no common prefix exists, the tool returns an empty string. The application checks for constraints on the input strings to ensure they are within acceptable limits.
 
-## Features
+Features
 
-- **Add New To-Do Items**: Easily add new tasks to the list.
-- **Mark Items as Completed**: Check or uncheck tasks to mark them as done.
-- **Delete To-Do Items**: Remove tasks from the list.
-- **Reorder To-Do Items**: Drag and drop tasks to reorder them.
+- Input strings as a comma-separated list.
+- Validate the input strings to ensure they contain only lowercase English letters and are within acceptable length limits.
+- Compute the longest common prefix string.
+- Display the result directly on the webpage.
 
-## Project Structure
-- `index.js`: The main server file for handling API requests and serving the application.
-- `public/index.html`: The HTML file with client-side JavaScript to interact with the API.
+Usage
 
-## Setup and Installation
+1. Open the HTML file in a web browser.
+2. Enter a list of strings in the input field, separated by commas (e.g., flower,flow,flight).
+3. Click the "Check" button to find the longest common prefix.
+4. The result will be displayed below the button.
 
-1. **Clone the repository**:
-    ```sh
-    git clone https://github.com/areerat-p/ToDoLis.git
-    ```
+Constraints
 
-2. **Navigate to the project directory**:
-    ```sh
-    cd ToDoLis
-    ```
+- The number of input strings should be between 1 and 200.
+- Each string must consist of only lowercase English letters and have a length between 0 and 200 characters.
 
-3. **Install dependencies**:
-    ```sh
-    npm install
-    ```
+Code Explanation
 
-4. **Run the server**:
-    ```sh
-    npm start
-    ```
+- The longestCommonPrefix function computes the longest common prefix string among an array of strings:
+  - It validates the input to ensure that it meets the constraints.
+  - It iteratively compares prefixes of the first string with each subsequent string to determine the longest common prefix.
 
-5. **Open your browser and navigate to**:
-    ```
-    http://localhost:8585/
-    ```
-
-## API Endpoints
-
-- `GET /todos` - Retrieve all to-do items.
-- `POST /todos` - Add a new to-do item.
-  - **Request body**: `{ "text": "Your to-do text" }`
-- `PATCH /todos/:id` - Update a to-do item's completion status.
-  - **Request body**: `{ "completed": true }`
-- `DELETE /todos/:id` - Delete a to-do item.
-- `POST /todos/reorder` - Reorder to-do items.
-  - **Request body**: `{ "orderedIds": [1, 2, 3, ...] }`
-
-## Usage
-
-1. **Add To-Do**:
-   - Enter a task in the input field and click "Add To-Do".
-
-2. **Complete/Uncomplete To-Do**:
-   - Toggle the checkbox next to a task to mark it as completed or not.
-
-3. **Delete To-Do**:
-   - Click the "Delete" button next to a task to remove it from the list.
-
-4. **Reorder To-Do**:
-   - Drag and drop tasks to reorder them. The new order will be saved automatically.
-
-## Technologies Used
-
-- **Node.js**: Server-side JavaScript runtime.
-- **Express.js**: Web application framework for Node.js.
-- **HTML**: Markup language for the web.
-- **CSS**: Stylesheet language for presentation.
-- **JavaScript**: Client-side scripting language.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- The HTML provides an input field for the user to enter strings and a button to trigger the prefix check.
+- The result is displayed dynamically on the webpage when the button is clicked.
