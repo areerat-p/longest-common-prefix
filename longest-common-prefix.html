@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Technical Test</title>
+</head>
+<body>
+    <h1>3. Technical Test</h1>
+    <pre>
+        Write a function to find the longest common prefix string amongst an array of strings.
+        If there is no common prefix, return an empty string "".
+    </pre>
+    <div>
+        <label for="stringsInput">Enter strings (comma separated):</label>
+        <input type="text" id="stringsInput" placeholder="e.g., flower,flow,flight">
+        <button id="checkPrefix">Check</button>
+    </div>
+    <p>Longest common prefix string: <span id="result"></span></p>
+</body>
+</html>
+
+<script>
+    function longestCommonPrefix(strs) {
+        // Check constraints
+        if (strs.length < 1 || strs.length > 200) {
+            return "";
+        }
+
+        for (let str of strs) {
+            if (str.length > 200) {
+                return "Each string length must be between 0 and 200.";
+            }
+            if (str.length > 0 && !/^[a-z]+$/.test(str)) {
+                return "Each string must consist of only lowercase English letters.";
+            }
+        }
+
+        let prefix = strs[0];
+
+        for (let i = 1; i < strs.length; i++) {
+            for (let j = prefix.length; j >= 0; j--) {
+                if (strs[i].indexOf(prefix.substring(0, j)) === 0) {
+                    prefix = prefix.substring(0, j);
+                    break;
+                }
+                if (j === 0) {
+                    return "";
+                }
+            }
+        }
+
+        return prefix;
+    }
+
+    document.getElementById('checkPrefix').addEventListener('click', function() {
+        let input = document.getElementById('stringsInput').value;
+        let strs = input.split(',').map(str => str.trim());
+        let result = longestCommonPrefix(strs);
+        document.getElementById('result').textContent = result;
+    });
+</script>
